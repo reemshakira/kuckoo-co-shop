@@ -11,7 +11,15 @@
   - description: one or two short sentences
   - image:       picture file inside the images/products folder
   - featured:    true = show on the Home page (pick 4)
+  - isNew:       true = show a "New" badge on the product (optional)
 */
+
+/* Shop contact details shown in the footer of every page.
+   Replace these with your real Instagram handle and email. */
+const SHOP_INFO = {
+  instagram: "kuckooco",            // your Instagram username, without the @
+  email: "hello@kuckooco.com"       // your contact email
+};
 
 const CATEGORIES = ["Home Décor", "Desk Stuff", "Gifts", "Keychains"];
 
@@ -41,7 +49,8 @@ const PRODUCTS = [
     category: "Home Décor",
     description: "Felt moons from new to full, strung on cotton twine. Hang it over a bed, a window or a very dramatic doorway.",
     image: "images/products/moon-phase-garland.svg",
-    featured: false
+    featured: false,
+    isNew: true
   },
   {
     id: "sleepy-cat-pen-holder",
@@ -68,7 +77,8 @@ const PRODUCTS = [
     category: "Desk Stuff",
     description: "200 sticky notes shaped like a cup of boba, pearls included. Reminders have never looked this refreshing.",
     image: "images/products/bubble-tea-sticky-notes.svg",
-    featured: false
+    featured: false,
+    isNew: true
   },
   {
     id: "durian-scented-candle",
@@ -86,7 +96,8 @@ const PRODUCTS = [
     category: "Gifts",
     description: "A tall enamel mug with a little pouring man on the side. Built for frothy teh tarik, also fine with Milo.",
     image: "images/products/teh-tarik-mug.svg",
-    featured: true
+    featured: true,
+    isNew: true
   },
   {
     id: "kopi-lover-gift-box",

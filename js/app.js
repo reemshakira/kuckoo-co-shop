@@ -21,7 +21,10 @@ function productLink(p) {
 function cardHTML(p) {
   return `
     <a class="card" href="${productLink(p)}">
-      <img src="${p.image}" alt="${escapeHTML(p.name)}" loading="lazy" width="400" height="400">
+      <div class="card-media">
+        ${p.isNew ? '<span class="badge-new">New</span>' : ""}
+        <img src="${p.image}" alt="${escapeHTML(p.name)}" loading="lazy" width="400" height="400">
+      </div>
       <div class="card-body">
         <span class="cat">${escapeHTML(p.category)}</span>
         <h3>${escapeHTML(p.name)}</h3>
@@ -106,7 +109,7 @@ function renderProduct() {
       <a href="shop.html">Shop</a> / <a href="${catLink}">${escapeHTML(p.category)}</a> / ${escapeHTML(p.name)}
     </nav>
     <div class="product">
-      <div class="product-img"><img src="${p.image}" alt="${escapeHTML(p.name)}" width="800" height="800"></div>
+      <div class="product-img">${p.isNew ? '<span class="badge-new">New</span>' : ""}<img src="${p.image}" alt="${escapeHTML(p.name)}" width="800" height="800"></div>
       <div class="product-info">
         <a class="cat" href="${catLink}">${escapeHTML(p.category)}</a>
         <h1>${escapeHTML(p.name)}</h1>
@@ -116,7 +119,7 @@ function renderProduct() {
         <p class="note">We're still building our checkout. Check back soon!</p>
         <ul class="perks">
           <li>🎁 Free gift wrap on every order</li>
-          <li>🚚 Ships across Malaysia</li>
+          <li>🚚 Ships within Malaysia</li>
           <li>💛 Picked by humans who giggle at odd things</li>
         </ul>
       </div>
@@ -131,6 +134,20 @@ function renderProduct() {
       <div class="grid">${related.map(cardHTML).join("")}</div>`;
   }
 }
+
+/* Footer: Instagram and email from SHOP_INFO in products.js */
+function renderContact() {
+  if (typeof SHOP_INFO === "undefined") return;
+  document.querySelectorAll("[data-instagram]").forEach(a => {
+    a.href = "https://www.instagram.com/" + encodeURIComponent(SHOP_INFO.instagram) + "/";
+    a.querySelector("span").textContent = "@" + SHOP_INFO.instagram;
+  });
+  document.querySelectorAll("[data-email]").forEach(a => {
+    a.href = "mailto:" + SHOP_INFO.email;
+    a.querySelector("span").textContent = SHOP_INFO.email;
+  });
+}
+renderContact();
 
 /* Footer year */
 document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
